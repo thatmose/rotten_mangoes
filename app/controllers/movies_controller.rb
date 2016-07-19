@@ -17,7 +17,6 @@ class MoviesController < ApplicationController
     if @movie.save
       redirect_to movies_path
     else
-      @movie.errors
       render :new
     end
   end
