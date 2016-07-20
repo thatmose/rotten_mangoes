@@ -32,6 +32,11 @@ gem 'mini_magick'
 gem 'carrierwave'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# Pagination gem
+gem 'kaminari'
+# Bootstrap (already required sass-rails)
+gem 'bootstrap-sass', '~> 3.3.6'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

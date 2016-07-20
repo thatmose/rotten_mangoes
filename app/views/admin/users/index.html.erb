@@ -1,0 +1,17 @@
+<div class = "container">
+<table class="table table-striped">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th> 
+    <th>Email</th>
+  </tr>
+	<% @users.each do |user|%>
+		<tr>
+			<td><%= user.firstname %></td>
+			<td><%= user.lastname %></td>
+			<td><%= user.email %></td>
+		</tr>
+	<% end %>
+</table>
+<%= paginate @users %>
+</div>
