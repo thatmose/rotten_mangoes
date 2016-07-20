@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def admin_only
+    unless current_user.admin
+      flash[:alert] = "You do not have admin privileges."
+      redirect_to movies_path
+    end
+  end
+
   def restrict_access
     if !current_user
       flash[:alert] = "You must log in."
