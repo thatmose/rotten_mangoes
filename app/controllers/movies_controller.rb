@@ -1,10 +1,12 @@
 class MoviesController < ApplicationController
+  # Prepares the @movie object before calling the listed functions
+  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+
   def index
     @movies = Movie.all
   end
 
   def show
-    @movie = Movie.find(params[:id])
   end
 
   def new
@@ -22,12 +24,9 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    @movie = Movie.find(params[:id])
   end
 
   def update
-    @movie = Movie.find(params[:id])
-
     if @movie.update_attributes(movie_params)
     redirect_to movie_path(@movie)
     else
@@ -36,12 +35,15 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    @movie = Movie.find(params[:id])
     @movie.destroy
     redirect_to movies_path
   end
   
   protected
+
+  def set_movie
+    @movie = Movie.find(params[:id])
+  end
 
   def movie_params
     params.require(:movie).permit(:title, :release_date, :director, :runtime_in_minutes, :image, :description
