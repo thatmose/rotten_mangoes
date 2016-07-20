@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :admin_only
-  before_action :set_user, only: [ :edit, :update]
+  before_action :set_user, only: [ :edit, :update, :destroy]
 
   def new
     @user = User.new
@@ -29,6 +29,15 @@ class Admin::UsersController < ApplicationController
     else
       flash.now[:alert] = "Sign Up failed..."
       render :new
+    end
+  end
+
+  def destroy
+    if @user.destroy
+      redirect_to admin_users_path, notice: "User has been removed!"
+    else
+      flash.now[:alert] = "Delete action has failed..."
+      render :index
     end
   end
 

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   validates :email,
    presence: true, uniqueness: true
@@ -19,4 +19,7 @@ class User < ApplicationRecord
     "#{firstname} #{lastname}"
   end
 
+  def review_count
+    self.reviews.count
+  end
 end
