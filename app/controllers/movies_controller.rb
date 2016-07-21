@@ -3,6 +3,7 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
   def index
+    p params
     @movies = Movie.all
   end
 
