@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/switch_back', to: 'application#switch_back', as: 'switch_back'
 
   namespace :admin do
-    resources :users, only: [:new, :index, :create, :edit, :show, :update, :destroy]
+    resources :users, only: [:new, :index, :create, :edit, :update, :destroy]
     get 'users/spoof_user/:id', to: 'users#spoof_user', as: 'spoof_user'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

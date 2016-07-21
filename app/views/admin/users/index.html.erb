@@ -1,15 +1,15 @@
 <div class = "container">
-<table class="table table-striped">
-  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th> 
-    <th>Email</th>
-    <th>Reviews</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-	<% @users.each do |user|%>
+	<table class="table table-striped">
+		<tr>
+			<th>Firstname</th>
+			<th>Lastname</th> 
+			<th>Email</th>
+			<th>Reviews</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<% @users.each do |user|%>
 		<tr>
 			<td><%= user.firstname %></td>
 			<td><%= user.lastname %></td>
@@ -19,11 +19,7 @@
 			<td><%= link_to("Delete", admin_user_path(user), method: :delete, data: {confirm: "Are you sure?" }) %> </td>
 			<td><%= link_to("Switch to User", admin_spoof_user_path(user)) %></td>
 		</tr>
-	<% end %>
-</table>
-<%= paginate @users %>
+		<% end %>
+	</table>
+	<%= paginate @users %>
 </div>
-<p><%= current_user.full_name %></p>
-<p><% p session %></p>
-<p>session user_id: <%= session[:user_id] %></p>
-<p>session spoof_user_id: <%= session[:spoof_user_id] %></p>
