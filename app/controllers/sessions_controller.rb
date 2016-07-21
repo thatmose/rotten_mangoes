@@ -14,7 +14,12 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    if preview_mode?
+      session.delete(:spoof_user_id)
+      session.delete(:preview_mode)
+    else
+      session[:user_id] = nil
+    end
     redirect_to movies_path, notice: "Adios!"
   end
 

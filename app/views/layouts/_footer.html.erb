@@ -6,4 +6,13 @@
       <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
     <% end %>
   </small>
+
+  <% if preview_mode? %>
+	<p>This is preview mode</p>
+	<p>You are logged in as <%= current_user.full_name %></p>
+	<p><%= current_user.full_name %></p>
+	<p>Your admin user id is: <%= session[:user_id] %></p>
+	<p>Your preview user id is : <%= session[:spoof_user_id] %></p>
+	<p>To end the preview: <%= link_to "End preview", switch_back_path %>
+  <% end %>
 </footer>

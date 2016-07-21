@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :admin_only
-  before_action :set_user, only: [ :edit, :update, :destroy]
+  before_action :set_user, only: [ :edit, :update, :destroy, :spoof_user]
 
   def new
     @user = User.new
@@ -11,6 +11,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  def show
   end
 
   def update
@@ -39,6 +42,12 @@ class Admin::UsersController < ApplicationController
       flash.now[:alert] = "Delete action has failed..."
       render :index
     end
+  end
+
+  def spoof_user
+    session[:spoof_user_id] = @user.id
+    session[:preview_mode] = true
+    redirect_to movies_path, notice: "You are now logged in as #{current_user.full_name}"
   end
 
   protected
