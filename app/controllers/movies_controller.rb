@@ -3,8 +3,21 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    p params
     @movies = Movie.all
+    if params[:commit] && params[:commit] == "Search"
+      @movies = @movies.title_name_like(params[:title].strip) unless params[:title].strip.nil?
+      @movies = @movies.director_name_like(params[:director].strip) unless params[:director].strip.nil?
+      case params[:duration]
+      when "1"
+        @movies = @movies.duration_less_than_90
+      when "2"
+        @movies = @movies.duration_btn_90_120
+      when "3"
+        @movies = @movies.duration_greater_than_120
+      else
+        @movies
+      end
+    end
   end
 
   def show
