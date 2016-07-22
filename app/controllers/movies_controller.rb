@@ -5,8 +5,7 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
     if params[:commit] && params[:commit] == "Search"
-      @movies = @movies.title_name_like(params[:title].strip) unless params[:title].strip.nil?
-      @movies = @movies.director_name_like(params[:director].strip) unless params[:director].strip.nil?
+      @movies = @movies.title_director_like(params[:q].strip) unless params[:q].strip.nil?
       case params[:duration]
       when "1"
         @movies = @movies.duration_less_than_90

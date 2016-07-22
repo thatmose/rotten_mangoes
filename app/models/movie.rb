@@ -22,8 +22,7 @@ class Movie < ApplicationRecord
 
   validate :release_date_is_in_the_past
 
-  scope :title_name_like, ->(title_q) { where("title LIKE ?", "%#{title_q}%")}
-  scope :director_name_like, ->(director_q) { where("director LIKE ?", "%#{director_q}%")}
+  scope :title_director_like, ->(query) { where("title LIKE ? OR director LIKE ?", "%#{query}%", "%#{query}%" )}
   scope :duration_less_than_90, -> { where("runtime_in_minutes < 90 ") }
   scope :duration_greater_than_120, -> { where("runtime_in_minutes > 120 ") }
   scope :duration_btn_90_120, -> { where(runtime_in_minutes: (90..120)) }
