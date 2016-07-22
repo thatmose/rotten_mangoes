@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+      <h2 class="username"><%= @user.full_name %></h2>
+      <h2><%= @user.email %></h2>
+      <p><strong><%= pluralize( @user.review_count ,"review") %></strong></p>
+      <ul>
+        <% if @reviews.empty? %>
+          <p>This user has no reviews yet!</p>
+        <% else %>
+          <% @reviews.each do |review| %>
+            <li class="list-unstyled">
+              <p class="title"><strong><%= review.movie.title %></strong> | Rating: <%= review.rating_out_of_ten %>/10</p>
+              <p><%= review.text %></p>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div><!--/col-->
+  </div><!--/row-->
+</div><!-- /container -->
