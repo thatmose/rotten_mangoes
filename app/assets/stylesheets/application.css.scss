@@ -20,6 +20,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.media-heading {
+.media-heading, .username, .title {
 	text-transform: capitalize; 
 }
