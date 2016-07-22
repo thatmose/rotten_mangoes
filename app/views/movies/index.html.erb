@@ -7,22 +7,7 @@
 
 <ul class="list-unstyled list-group row">
 	<% @movies.each do |movie| %>
-	<li class="list-unstyled list-group-item col-xs-4">
-		<div class="media">
-			<div class="media-left">
-				<%= link_to image_tag(movie.image_url(:thumb)), movie_path(movie) %>
-			</div>
-			<div class="media-body">
-				<h2 class="media-heading"><%= link_to movie.title, movie_path(movie) %></h2>
-				<h3 class="media-heading"><%= formatted_date(movie.release_date) %></h3>
-				<h4 class="media-heading">Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
-				<h4 class="media-heading">Average Rating: <%= movie.review_average %>/10 </h4>
-				<h4 class="media-body">
-					<p><%= movie.description %></p>
-				</h4>
-			</div>
-		</div>
-	</li>
+		<%= render partial: "movie", locals: { movie: movie } %> 
 	<% end %>
 </ul>
 
