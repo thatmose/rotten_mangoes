@@ -30,7 +30,8 @@
     <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation %>
   </div>
-  <% if is_admin? %>
+<!-- Added catch in case someone is trying to sign up (current user is not set)-->
+  <% if current_user && is_admin? %>
     <div>
       <%= f.label :admin %><br>
       <%= f.check_box :admin %>

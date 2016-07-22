@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
 
-
-
   resources :movies do
     resources :reviews, only: [:new, :create]
   end
   
   resources :users, only: [:new, :create, :show]
-  resources :sessions, only: [:new, :create, :destroy]
+  resource :session, only: [:new, :create, :destroy]
   root to: 'movies#index'
 
   get '/switch_back', to: 'application#switch_back', as: 'switch_back'
