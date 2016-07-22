@@ -15,11 +15,19 @@ class User < ApplicationRecord
   validates :password,
    length: { in: 6..20 }, on: :create
 
+  after_destroy :send_mail
+
   def full_name
     "#{firstname} #{lastname}"
   end
 
   def review_count
     self.reviews.count
+  end
+
+  protected
+
+  def send_mail
+    UserMailer.goodbye_email(self).deliver_now
   end
 end
