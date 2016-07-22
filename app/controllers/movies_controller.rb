@@ -17,6 +17,7 @@ class MoviesController < ApplicationController
         @movies
       end
     end
+    @movies = @movies.page(params[:page]).per(10)
   end
 
   def show

@@ -1,7 +1,7 @@
-<%= form_tag(movies_path, method: "get") do %>
-	<%= label_tag(:q, "Search:") %>
-	<%= text_field_tag(:q) %>
+<%= form_tag(movies_path, method: "get", class: 'navbar-form navbar-left') do %>
+	<% label_tag(:q) %>
+	<%= text_field_tag(:q, nil, placeholder:"Search", class: 'form-control') %>
 	<%= label_tag(:duration, "Duration:") %>
-	<%= select_tag(:duration,options_for_select([[' --- ', 4],['Under 90 minutes', 1], ['Between 90 and 120 minutes', 2],['Over 120 minutes', 3]], 4) ) %>
-	<%= submit_tag("Search") %>
+	<%= select_tag(:duration,options_for_select([[' --- ', 4],['Under 90 minutes', 1], ['Between 90 and 120 minutes', 2],['Over 120 minutes', 3]], 4), class: 'btn btn-default dropdown-toggle' ) %>
+	<%= submit_tag("Search", class: 'btn btn-default') %>
 <% end %>

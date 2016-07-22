@@ -1,18 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RottenMangoes</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>RottenMangoes</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-	<% flash.each do |key, value| %>
-		<%= content_tag(:div, value) %>
-	<% end %>
-    <%= yield %>
-	<%= render 'layouts/footer' %>
-  </body>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <%= link_to("RM.com", movies_path , class: 'navbar-brand') %>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav nav-tabs navbar-nav">
+          <li role="presentation"><%= link_to("Movies", movies_path) %></li>
+          <% if current_user.admin %>
+            <li role="presentation"><%= link_to("Admin Portal", admin_users_path) %></li>
+          <% end %>
+        </ul>
+        <ul>
+          <%= render 'movies/search_form' %>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <!-- Add log in, sign up and logout buttons here -->
+          <% if current_user %>
+            <li>Signed in as <%= current_user.full_name %></li>
+            <li><%= button_to "Log out", session_path, method: :delete, class: 'btn btn-warning navbar-btn' %></li>
+          <% else %>
+            <li><%= button_to "Log In", new_session_path, method: :get, class: 'btn btn-primary navbar-btn' %></li>
+            <li><%= button_to "Sign Up", new_user_path, method: :get, class: 'btn btn-success navbar-btn' %></li>
+          <% end %>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <% flash.each do |key, value| %>
+  <%= content_tag(:div, value) %>
+  <% end %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+</body>
 </html>

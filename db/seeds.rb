@@ -17,6 +17,13 @@
       )
 }
 
+User.create(
+   email: 'admin@gmail.com',
+   password: 'password',
+   firstname: 'Moses',
+   lastname: 'Admin',
+   admin: true
+   )
 
 60.times {
    Movie.create!(
